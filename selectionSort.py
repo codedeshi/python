@@ -1,6 +1,18 @@
 import random
-import datetime
+import time
 
+def timer(func):
+    def wrapper(*arg,**kwarg):
+        t = 0
+        for i in range(iterations):
+            start =  time.time()
+            func(*arg,**kwarg)
+            end  = time.time()
+            t+= (end-start)
+        print t/iterations*1000
+    return wrapper
+
+@timer
 def selectionSort(arr):
     start = 0
     while start < len(arr):
@@ -17,8 +29,12 @@ def selectionSort(arr):
 
 arr = [random.random() for i in range(100)]
 iterations = 100000
-start =  datetime.datetime.now()
-for i in range(iterations):
-    selectionSort(arr)
-end = datetime.datetime.now()
-print ((end.minute - start.minute) * 60 + (end.second - start.second) + float(end.microsecond - start.microsecond)/1000000)/iterations , "seconds"
+#t = 0
+#for i in range(iterations):
+#    start =  time.time()
+#    selectionSort(arr)
+#    end = time.time()
+#    t+=(end-start)
+#print t/iterations*1000
+
+selectionSort(arr)
