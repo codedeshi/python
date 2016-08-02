@@ -7,11 +7,13 @@ def bubbleSort(arr):
             if arr[i] > arr[i + 1]:
                 arr[i],arr[i+1] = arr[i+1],arr[i]
         length-=1;
-    print arr
+    return arr    
+    #print arr
+
 arr = [random.random() for i in range(100)]
-
-
+iterations = 100000
 start =  datetime.datetime.now()
-bubbleSort(arr)
+for i in range(iterations):
+    bubbleSort(arr)
 end = datetime.datetime.now()
-print end.microsecond - start.microsecond
+print ((end.minute - start.minute) * 60 + (end.second - start.second) + float(end.microsecond - start.microsecond)/1000000)/iterations , "seconds"
